@@ -1,0 +1,137 @@
+<div class="row justify-content-center" style="margin-left: 30px;">
+  <div class="col-md-10">
+    <div id="kick-start" class="card">
+
+      <div class="row  justify-content-center card-header">
+        <h4 class="card-title">Creación del registro de servicios</h4>
+      </div>
+
+      <div class="card-body">
+        <div class="card-block">
+          <form [formGroup]="formReportService">
+            <div class="row justify-content-md-center" style="overflow-x:auto; padding-top: 1%;">
+              <table class="table table-hover">
+                <tbody>
+                  <tr>
+                    <th>Identificación del técnico</th>
+                    <td>
+                      <div class="col-md-auto input-group">
+                        <input class="form-control" type="text" formControlName="identificationTechnician"
+                          style="border-radius: 100px;" />
+                      </div>
+                      <div class="text-danger"
+                        *ngIf="identificationTechnician.invalid && (identificationTechnician.dirty || identificationTechnician.touched)">
+                        <small>Parámetro invalido, debe ingresar la identificación del técnico.</small>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th>Identificación del servicio</th>
+                    <td>
+                      <div class="col-md-auto input-group">
+                        <input class="form-control" type="text" formControlName="identificationService"
+                          style="border-radius: 100px;">
+                      </div>
+                      <div class="text-danger" *ngIf="identificationService.invalid && (identificationService.dirty 
+                          || identificationService.touched)">
+                        <small>Parámetro invalido, debe ingresar la identificación del servicio.</small>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th>Fecha y hora de inicio</th>
+                    <td>
+
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="input-group" style=" display: inline-flex;">
+                            <input class="form-control" placeholder="{{datePlaceholder}}" name="dp" ngbDatepicker
+                              #d="ngbDatepicker" formControlName="startDate" [minDate]="minDate">
+                            <div class="input-group-append">
+                              <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><i
+                                  class="fa fa-calendar"></i></button>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-4">
+                          <div class="input-group" style=" display: inline-flex;">
+                            <div class="input-group-append" style="margin-left: 6px;">
+                              <ngb-timepicker formControlName="startTime"></ngb-timepicker>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="text-danger" *ngIf="startTime.invalid && (startTime.dirty || startTime.touched)">
+                        <small>Parámetro invalido, debe ingresar una fecha.</small>
+                      </div>
+                      <div class="text-danger" *ngIf="startDate.invalid && (startDate.dirty || startDate.touched)">
+                        <small>Parámetro invalido, debe ingresar una hora valida.</small>
+                      </div>
+                    </td>
+                  </tr>
+
+
+                  <tr>
+                    <th>Fecha y hora de fin</th>
+                    <td>
+
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="input-group" style=" display: inline-flex;">
+                            <input class="form-control" placeholder="{{datePlaceholder}}" name="dpp" ngbDatepicker
+                              #dd="ngbDatepicker" formControlName="endDate" [minDate]="minDate">
+                            <div class="input-group-append">
+                              <button class="btn btn-outline-secondary calendar" (click)="dd.toggle()" type="button"><i
+                                  class="fa fa-calendar"></i></button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="input-group" style=" display: inline-flex; margin-top: 3px;">
+                            <div class="input-group-append" style="margin-left: 10px;">
+                              <ngb-timepicker formControlName="endTime"></ngb-timepicker>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="text-danger" *ngIf="endDate.invalid && (endDate.dirty || endDate.touched)">
+                        <small>Parámetro invalido, debe ingresar una fecha.</small>
+                      </div>
+
+
+                      <div class="text-danger" *ngIf="endTime.invalid && (endTime.dirty || endTime.touched)">
+                        <small>Parámetro invalido, debe ingresar una hora valida.</small>
+                      </div>
+                    </td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+            </div>
+          </form>
+
+
+          <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+              <button type="button" name="button" class="btn btn-raised btn-success"
+                style="background-color:#2C1464 !important; border-color:#2C1464 !important" (click)="saveFormReport()"
+                [disabled]="!formReportService.valid">
+                <span *ngIf="!loadIconUpdate" style="margin-right: 5px;">Enviar</span>
+                <i [ngClass]="{'fa-arrow-circle-right':!loadIconUpdate, 'fa-refresh fa-spin':loadIconUpdate}"
+                  class="fa ray"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
